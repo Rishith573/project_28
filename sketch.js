@@ -3,6 +3,7 @@ const Engine = Matter.Engine;
 const World = Matter.World;
 const Bodies = Matter.Bodies;
 const Body = Matter.Body;
+const Constraint = Matter.Constraint
 
 var paper, ground, dustbin1, dustbin2, dustbin3, sling;
 
@@ -25,7 +26,7 @@ function setup() {
 	dustbin2 = new Dustbin(590, 585, 100, 20);
 	dustbin3 = new Dustbin(650, 520, 20, 150);
 
-	sling = new Launcher(paper.body, {x:500, y:600});
+	sling = new Launcher(paper.body, {x:150, y:300});
 
 	Engine.run(engine);
   
@@ -37,14 +38,17 @@ function draw() {
   rectMode(CENTER);
   drawSprites();
 
+  sling.display();
   paper.display();
   ground.display();
   dustbin2.display();
   
 }
 
-function keyPressed(){
-	if (keyCode === UP_ARROW){
-		Matter.Body.applyForce(paper.body,paper.body.position, {x:14, y:-17})
-	}
+function mouseDragged (){
+    Matter.Body.setPosition(paper.body, {x : mouseX, y : mouseY})
+}
+
+function mouseReleased (){
+    sling.fly();
 }
