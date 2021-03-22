@@ -15,12 +15,13 @@ class Launcher{
     
 
     display(){
-        var pointA = this.chain.bodyA.position;
-        var pointB = this.chain.pointB;
-        console.log(pointA, pointB);
-        strokeWeight(2)
-        line(pointA.x, pointA.y, pointB.x, pointB.y);
-        
+        if (this.chain.bodyA){
+            var pointA = this.chain.bodyA.position;
+            var pointB = this.pointB;
+            console.log(pointA, pointB);
+            strokeWeight(2)
+            line(pointA.x, pointA.y, pointB.x, pointB.y);
+        }
     }
 
     fly(){
